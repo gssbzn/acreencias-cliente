@@ -10,11 +10,14 @@ import java.util.logging.Logger;
 import javax.ws.rs.client.ClientBuilder;
 
 import com.example.dao.ClienteDAO;
-import com.example.dao.DAOFactory;
+import com.example.factory.DAOFactory;
+import com.example.factory.DAOFactory.DAOTYPE;
 import com.example.model.Cliente;
 
 /**
+ * <p>Programa para operaciones CRUD sobre servicio RESTful de acreencias </p>
  * 
+ * <p> Permite modo interactivo (-i) o modo demonio con peticiones constantes </p>
  * @author Gustavo Bazan
  *
  */
@@ -23,7 +26,8 @@ public class App {
 	private static final String SERVER = "http://acreencias.herokuapp.com/";
 	
 	public static void main(String[] args) throws Exception {
-		ClienteDAO clienteDao = DAOFactory.getClienteDAO();
+		DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOTYPE.RESTFULFACTORY);
+		ClienteDAO clienteDao = daoFactory.getClienteDAO();
     	List<Cliente> clientes = (ArrayList<Cliente>) clienteDao.findAll();
     	
     	if(clientes.size() == 0){

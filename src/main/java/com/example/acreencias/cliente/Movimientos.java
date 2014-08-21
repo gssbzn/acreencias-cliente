@@ -9,8 +9,9 @@ import java.util.logging.Logger;
 
 import com.example.dao.ClienteDAO;
 import com.example.dao.CuentaDAO;
-import com.example.dao.DAOFactory;
 import com.example.dao.MovimientoDAO;
+import com.example.factory.DAOFactory;
+import com.example.factory.DAOFactory.DAOTYPE;
 import com.example.model.Cliente;
 import com.example.model.Cuenta;
 import com.example.model.Movimiento;
@@ -20,9 +21,10 @@ public class Movimientos {
 	private static final Logger logger = Logger.getLogger(Movimientos.class.getCanonicalName());
 	
 	public static boolean executeMovimientoMenu(BufferedReader in) throws IOException {
-		ClienteDAO clienteDao = DAOFactory.getClienteDAO();
-		CuentaDAO cuentaDao = DAOFactory.getCuentaDAO();
-		MovimientoDAO movimientoDao = DAOFactory.getMovimientoDAO();
+		DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOTYPE.RESTFULFACTORY);
+		ClienteDAO clienteDao = daoFactory.getClienteDAO();
+		CuentaDAO cuentaDao = daoFactory.getCuentaDAO();
+		MovimientoDAO movimientoDao = daoFactory.getMovimientoDAO();
     	String action;
     	
     	System.out.println("\n\n[C]reate | [R]ead | [L]ist | [B]ack: ");
@@ -118,9 +120,10 @@ public class Movimientos {
 	}
 
 	public static void daemon(Integer cliente_id){
-		ClienteDAO clienteDao = DAOFactory.getClienteDAO();
-		CuentaDAO cuentaDao = DAOFactory.getCuentaDAO();
-		MovimientoDAO movimientoDao = DAOFactory.getMovimientoDAO();
+		DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOTYPE.RESTFULFACTORY);
+		ClienteDAO clienteDao = daoFactory.getClienteDAO();
+		CuentaDAO cuentaDao = daoFactory.getCuentaDAO();
+		MovimientoDAO movimientoDao = daoFactory.getMovimientoDAO();
 		
     	Cliente cli = clienteDao.find(cliente_id);
     	logger.info(cli.toString());

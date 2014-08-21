@@ -10,7 +10,8 @@ import javax.ws.rs.client.WebTarget;
 
 import com.example.dao.ClienteDAO;
 import com.example.dao.CuentaDAO;
-import com.example.dao.DAOFactory;
+import com.example.factory.DAOFactory;
+import com.example.factory.DAOFactory.DAOTYPE;
 import com.example.model.Cliente;
 import com.example.model.Cuenta;
 import com.example.model.TipoCuenta;
@@ -29,8 +30,9 @@ public class Cuentas {
 	}
 	
 	public static boolean executeCuentaMenu(BufferedReader in) throws IOException {
-		ClienteDAO clienteDao = DAOFactory.getClienteDAO();
-		CuentaDAO cuentaDao = DAOFactory.getCuentaDAO();
+		DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOTYPE.RESTFULFACTORY);
+		ClienteDAO clienteDao = daoFactory.getClienteDAO();
+		CuentaDAO cuentaDao = daoFactory.getCuentaDAO();
 		String action;
     	
     	System.out.println("\n\n[C]reate | [R]ead | [L]ist | [B]ack: ");

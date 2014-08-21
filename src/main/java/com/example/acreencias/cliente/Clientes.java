@@ -9,7 +9,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 
 import com.example.dao.ClienteDAO;
-import com.example.dao.DAOFactory;
+import com.example.factory.DAOFactory;
+import com.example.factory.DAOFactory.DAOTYPE;
 import com.example.model.Cliente;
 
 /**
@@ -32,7 +33,8 @@ public class Clientes {
 	}
 	
 	public static boolean executeClienteMenu(BufferedReader in) throws IOException {
-		ClienteDAO clienteDao = DAOFactory.getClienteDAO();
+		DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOTYPE.RESTFULFACTORY);
+		ClienteDAO clienteDao = daoFactory.getClienteDAO();
 		String action;
     	
     	System.out.println("\n\n[C]reate | [R]ead | [U]pdate | [D]elete | [L]ist | [B]ack: ");
