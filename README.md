@@ -2,10 +2,10 @@ Cliente Acreencias
 ==================
 
 Este es un experimento del uso de un cliente que consuma un servicio Web en 
-[https://jax-rs-spec.java.net/](JAX-RS) y es construido con la ayuda de 
-[https://jersey.java.net/](Jersey).
+[JAX-RS](https://jax-rs-spec.java.net/) y es construido con la ayuda de 
+[Jersey](https://jersey.java.net/).
 
-El cliente permite hacer uso del servicio de [https://github.com/gssbzn/acreencias](Acreencias) 
+El cliente permite hacer uso del servicio de [Acreencias](https://github.com/gssbzn/acreencias) 
 para crear:
 * Clientes;
 * Cuentas;
