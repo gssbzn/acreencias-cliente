@@ -14,13 +14,18 @@ import com.example.factory.DAOFactory.DAOTYPE;
 import com.example.model.Cliente;
 
 /**
+ * Operaciones con clientes
  * 
  * @author Gustavo Bazan
  *
  */
 public class Clientes {
-	private static final Logger logger = Logger.getLogger(Clientes.class.toString());	
-		
+	private static final Logger logger = Logger.getLogger(Clientes.class.getCanonicalName());	
+	
+	/**
+	 * Inicializar 10 clientes
+	 * @param target servicio web
+	 */
 	public static void init(WebTarget target){
 		for(int i=1; i<=10; ++i){
 			Cliente cli = new Cliente();
@@ -32,6 +37,12 @@ public class Clientes {
 		}
 	}
 	
+	/**
+	 * Menu para clientes
+	 * @param in flujo de lectura
+	 * @return si regresa a menu anterior
+	 * @throws IOException error de lectura
+	 */
 	public static boolean executeClienteMenu(BufferedReader in) throws IOException {
 		DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOTYPE.RESTFULFACTORY);
 		ClienteDAO clienteDao = daoFactory.getClienteDAO();
@@ -97,14 +108,35 @@ public class Clientes {
         return false;
     }
     
+	/**
+	 * Leer cliente nuevo
+	 * @param in
+	 * @return Nuevo Ccliente
+	 * @throws IOException
+	 */
     private static Cliente inputCliente(BufferedReader in) throws IOException {
         return inputCliente(in, null, true);
     }
 
+    /**
+     * Editar cliente
+     * @param in
+     * @param cliDefaults
+     * @return Cliente editado
+     * @throws IOException
+     */
     private static Cliente inputEmployee(BufferedReader in, Cliente cliDefaults) throws IOException {
         return inputCliente(in, cliDefaults, false);
     }
 
+    /**
+     * Lectura de clientes
+     * @param in
+     * @param cliDefaults
+     * @param newCliente
+     * @return
+     * @throws IOException
+     */
     private static Cliente inputCliente(BufferedReader in, Cliente cliDefaults, boolean newCliente) throws IOException {
         
         String nombre;

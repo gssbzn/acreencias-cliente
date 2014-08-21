@@ -17,14 +17,29 @@ import com.example.model.Cliente;
 /**
  * <p>Programa para operaciones CRUD sobre servicio RESTful de acreencias </p>
  * 
- * <p> Permite modo interactivo (-i) o modo demonio con peticiones constantes </p>
+ * <p>Permite modo interactivo (-i) o modo demonio con peticiones constantes a un cliente dado (-c)</p>
+ * 
  * @author Gustavo Bazan
  *
  */
 public class App {
+	/** Logger */
 	private static final Logger logger = Logger.getLogger(App.class.getCanonicalName());
+	/** Servicio Web */
 	private static final String SERVER = "http://acreencias.herokuapp.com/";
 	
+	/**
+	 * <p>Aplicacion de terminal para operaciones sobre servicio web de acreencias
+	 * Por defecto aplica menu para crear, editar y actualizar:
+	 * <ul>
+	 * 		<li>Clientes</li>
+	 * 		<li>Cuentas</li>
+	 * 		<li>Movimientos</li>
+	 * @param args
+	 * 			<p>-i para menu
+	 * 			<p>-c &lt;id&gt; para crear constantemente operaciones al cliente dado
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 		DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOTYPE.RESTFULFACTORY);
 		ClienteDAO clienteDao = daoFactory.getClienteDAO();
@@ -59,7 +74,13 @@ public class App {
         
     }
     
-    public static boolean executeMenu(BufferedReader in) throws IOException {
+	/**
+	 * 
+	 * @param in
+	 * @return
+	 * @throws IOException
+	 */
+    private static boolean executeMenu(BufferedReader in) throws IOException {
     	String action;
     	
     	System.out.println("\n\n[C]lientes | C[u]entas | [M]ovimientos | [Q]uit: ");
